@@ -1,3 +1,4 @@
+import os
 import sqlite3
 
 # Connect to the database (or create a new one)
@@ -82,42 +83,125 @@ def delete_rsvp(event_id, guest_id):
     cursor.execute("DELETE FROM RSVPs WHERE event_id=? AND guest_id=?", (event_id, guest_id))
     conn.commit()
 
-#Example
-sample_events = [
-    ("Event 1", "2023-11-01", "Location 1", "Description 1"),
-    ("Event 2", "2023-11-05", "Location 2", "Description 2"),
-    ("Event 3", "2023-11-10", "Location 3", "Description 3"),
-    ("Event 4", "2023-11-15", "Location 4", "Description 4"),
-    ("Event 5", "2023-11-20", "Location 5", "Description 5"),
-    ("Event 6", "2023-11-25", "Location 6", "Description 6"),
-    ("Event 7", "2023-11-30", "Location 7", "Description 7"),
-    ("Event 8", "2023-12-05", "Location 8", "Description 8"),
-    ("Event 9", "2023-12-10", "Location 9", "Description 9"),
-    ("Event 10", "2023-12-15", "Location 10", "Description 10")
-]
+# #Example
+# sample_events = [
+#     ("Event 1", "2023-11-01", "Location 1", "Description 1"),
+#     ("Event 2", "2023-11-05", "Location 2", "Description 2"),
+#     ("Event 3", "2023-11-10", "Location 3", "Description 3"),
+#     ("Event 4", "2023-11-15", "Location 4", "Description 4"),
+# ]
+#
+# # Insert 4 sample events
+# for event in sample_events:
+#     insert_event(*event)
+#
+# sample_guests = [
+#     ("Guest 1", "guest1@example.com"),
+#     ("Guest 2", "guest2@example.com"),
+#     ("Guest 3", "guest3@example.com"),
+#     ("Guest 4", "guest4@example.com"),
+#     ("Guest 5", "guest5@example.com")
+# ]
+#
+# # Insert 5 sample guests
+# for guest in sample_guests:
+#     insert_guest(*guest)
 
-# Insert 10 sample events
-for event in sample_events:
-    insert_event(*event)
-
-
-cursor.execute("SELECT * FROM Events")
-events_data = cursor.fetchall()
-
-# Print the data
-for event in events_data:
-    print(event)
-print("-------------------------------------------------")
+# cursor.execute("SELECT * FROM Events")
+# events_data = cursor.fetchall()
+#
+# # Print the data
+# for event in events_data:
+#     print(event)
+# print("-------------------------------------------------")
 # Update data
-update_event(1, "Updated Event 1", "2023-11-02", "Updated Location 1", "Updated Description 1")
-update_event(2, "Updated Event 2", "2023-11-06", "Updated Location 2", "Updated Description 2")
+# update_event(1, "Updated Event 1", "2023-11-02", "Updated Location 1", "Updated Description 1")
+# update_event(2, "Updated Event 2", "2023-11-06", "Updated Location 2", "Updated Description 2")
 # Print the data
-cursor.execute("SELECT * FROM Events")
-events_data = cursor.fetchall()
-for event in events_data:
-    print(event)
+# cursor.execute("SELECT * FROM Events")
+# events_data = cursor.fetchall()
+# for event in events_data:
+#     print(event)
 
+while True:
+    i = input("Press 1 to add Event. \nPress 2 to add a Guest. \nPress 3 to Invite Guests.\nPress 4 to View Reports\nPress 5 to Update Event\nPress 0 to exit. \nResponse: ")
+    i = int(i)
+    os.system('clear')
+    if i == 1:
+        name = input("Event name: ")
+        date = input("Event date: ")
+        location = input("Event location: ")
+        description = input("Event description: ")
+        insert_event(name,date,location,description)
+        os.system('clear')
+        print("Event Added")
+    elif i == 2:
+        name = input("Guest name: ")
+        email = input("Guest email: ")
+        insert_guest(name, email)
+        os.system('clear')
+        print("Guest Added")
+    elif i == 3:
+        cursor.execute("SELECT * FROM Events")
+        events_data = cursor.fetchall()
+        for event in events_data:
+            print(event)
+        eve = input("Choose the Event Id: ")
+        cursor.execute("SELECT * FROM Guests")
+        guests = cursor.fetchall()
+        for event in guests:
+            print(event)
+        gue = input("Choose the Guest Id: ")
+        insert_rsvp(eve, gue, "NA")
+        os.system('clear')
+        print("RSVP done!")
+    elif i == 4:
+        print("----------REPORTS----------")
+        while True:
+            j = input("Press 1 for Events, 2 for Guests, 3 for RSVPS, 0 for Main Menu: ")
+            j = int(j)
+            if(j == 1) :
+                os.system('clear')
+                cursor.execute("SELECT * FROM Events")
+                events_data = cursor.fetchall()
+                for event in events_data:
+                    print(event)
+            elif(j==2) :
+                os.system('clear')
+                cursor.execute("SELECT * FROM Guests")
+                guests = cursor.fetchall()
+                for event in guests:
+                    print(event)
+            elif(j==3) :
 
-
+                cursor.execute("SELECT * FROM Events")
+                events_data = cursor.fetchall()
+                for event in events_data:
+                    print(event)
+                eveNumber = input("Enter the Event Number: ")
+                os.system('clear')
+                cursor.execute("SELECT g.name, g.email, r.response FROM RSVPs r JOIN Guests g ON g.guest_id = r.guest_id WHERE event_id=?", (eveNumber,))
+                rsvps_data = cursor.fetchall()
+                if len(rsvps_data) == 0:
+                    print(f"No RSVPs found for event ID {eveNumber}")
+                else:
+                    print(f"RSVPs for event ID {eveNumber}:")
+                    for rsvp in rsvps_data:
+                        print(rsvp)
+            elif j==0 :
+                break
+    elif i == 5:
+        cursor.execute("SELECT * FROM Events")
+        events_data = cursor.fetchall()
+        for event in events_data:
+            print(event)
+        eveNumber2 = input("Enter the Event Number: ")
+        name = input("New Event name: ")
+        date = input("New Event date: ")
+        location = input("New Event location: ")
+        description = input("New Event description: ")
+        update_event(eveNumber2, name, date, location, description)
+    elif i == 0:
+        break
 
 conn.close()
