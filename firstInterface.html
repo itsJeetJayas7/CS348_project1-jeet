@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Event RSVP System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        input[type="text"], input[type="date"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Event RSVP System</h1>
+        <h2>Add Event</h2>
+        <label for="eventTitle">Event Title:</label>
+        <input type="text" id="eventTitle" placeholder="Event Title">
+        <label for="eventDate">Event Date:</label>
+        <input type="date" id="eventDate">
+        <label for="eventLocation">Event Location:</label>
+        <input type="text" id="eventLocation" placeholder="Event Location">
+        <label for="eventDescription">Event Description:</label>
+        <textarea id="eventDescription" rows="4" placeholder="Event Description"></textarea>
+        <button onclick="addEvent()">Add Event</button>
+
+        <h2>Add Guest</h2>
+        <label for="guestName">Guest Name:</label>
+        <input type="text" id="guestName" placeholder="Guest Name">
+        <label for="guestEmail">Guest Email:</label>
+        <input type="text" id="guestEmail" placeholder="Guest Email">
+        <button onclick="addGuest()">Add Guest</button>
+    </div>
+
+    <script>
+        // Function to add an event
+        function addEvent() {
+            var eventTitle = document.getElementById("eventTitle").value;
+            var eventDate = document.getElementById("eventDate").value;
+            var eventLocation = document.getElementById("eventLocation").value;
+            var eventDescription = document.getElementById("eventDescription").value;
+
+            fetch('http://127.0.0.1:5000/execute_python_function')
+                .then(response => response.text())
+                .then(data => {
+                    alert(data); // Show the result from the Python function
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+
+            // Clear the input fields
+            document.getElementById("eventTitle").value = "";
+            document.getElementById("eventDate").value = "";
+            document.getElementById("eventLocation").value = "";
+            document.getElementById("eventDescription").value = "";
+        }
+
+        // Function to add a guest
+        function addGuest() {
+            var guestName = document.getElementById("guestName").value;
+            var guestEmail = document.getElementById("guestEmail").value;
+
+            // Insert code here to add the guest to the database
+            // Example: You can use JavaScript to send data to a server for processing.
+
+            // Clear the input fields
+            document.getElementById("guestName").value = "";
+            document.getElementById("guestEmail").value = "";
+        }
+    </script>
+</body>
+</html>
