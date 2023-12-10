@@ -1,6 +1,7 @@
 # EventRSVP App
 
 EventRSVP is a simple C application for managing and RSVPing to events. It uses SQLite for local database storage and GTK+ for the graphical user interface.
+- Jeet Jayas
 
 ## Table of Contents
 
@@ -9,7 +10,6 @@ EventRSVP is a simple C application for managing and RSVPing to events. It uses 
 - [Installation](#installation)
 - [Usage](#usage)
 - [Contributing](#contributing)
-- [License](#license)
 
 ## Features
 
@@ -29,3 +29,15 @@ EventRSVP is a simple C application for managing and RSVPing to events. It uses 
 
    ```bash
    git clone https://github.com/your-username/eventRSVP.git
+   cd eventRSVP
+   make
+   ./eventRSVP
+## Usage
+
+1. **Add Events:** Provide the title, date, location, and description to add events, guests and rsvps.
+2. **View Events:** Check existing events and their details, plus filters.
+3. **RSVP to Events:** Confirm your attendance by RSVPing to events.
+
+## Contributing
+
+Contributions are welcome! If you find a bug or have a feature request, please open an issue. If you'd like to contribute code, feel free to fork the repository and submit a pull request.
