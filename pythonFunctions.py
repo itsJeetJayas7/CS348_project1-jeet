@@ -11,7 +11,7 @@ def my_python_function():
 @app.route('/execute_python_function', methods=['GET'])
 def execute_python_function():
     text_data = "Hello from Flask!"  # Replace with the text you want to send
-    return render_template('index.html', text_data = text_data)
+    return text_data
 
 if __name__ == '__main__':
     app.run(debug=True)

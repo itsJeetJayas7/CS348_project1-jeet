@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.40.0 -->
+<interface>
+  <requires lib="gtk+" version="3.24"/>
+  <object class="GtkTreeStore" id="tStore">
+    <columns>
+      <!-- column-name col1 -->
+      <column type="gchararray"/>
+      <!-- column-name col2 -->
+      <column type="gchararray"/>
+      <!-- column-name col3 -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkTreeStore" id="ts">
+    <columns>
+      <!-- column-name c1 -->
+      <column type="gchararray"/>
+      <!-- column-name c2 -->
+      <column type="gchararray"/>
+      <!-- column-name c3 -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkWindow" id="event_w">
+    <property name="can-focus">False</property>
+    <child>
+      <object class="GtkFixed">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <child>
+          <object class="GtkStack" id="stack">
+            <property name="width-request">430</property>
+            <property name="height-request">205</property>
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <child>
+              <object class="GtkFixed" id="p1">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="label" translatable="yes">New Name:</property>
+                    <attributes>
+                      <attribute name="font-desc" value="Adelle Sans Devanagari weight=780 14"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="x">5</property>
+                    <property name="y">5</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkEntry" id="entry_new_title">
+                    <property name="width-request">100</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="placeholder-text" translatable="yes">New Event Name</property>
+                  </object>
+                  <packing>
+                    <property name="x">95</property>
+                    <property name="y">5</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkEntry" id="entry_new_date">
+                    <property name="width-request">100</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="placeholder-text" translatable="yes">YYYY-MM-DD</property>
+                  </object>
+                  <packing>
+                    <property name="x">95</property>
+                    <property name="y">45</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkEntry" id="entry_new_loc">
+                    <property name="width-request">100</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                  </object>
+                  <packing>
+                    <property name="x">95</property>
+                    <property name="y">85</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkEntry" id="entry_new_desc">
+                    <property name="width-request">100</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                  </object>
+                  <packing>
+                    <property name="x">95</property>
+                    <property name="y">125</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="label" translatable="yes">Date:</property>
+                    <attributes>
+                      <attribute name="font-desc" value="Adelle Sans Devanagari weight=780 14"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="x">5</property>
+                    <property name="y">45</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="label" translatable="yes">Location:</property>
+                    <attributes>
+                      <attribute name="font-desc" value="Adelle Sans Devanagari weight=780 14"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="x">5</property>
+                    <property name="y">85</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="label" translatable="yes">Description:</property>
+                    <attributes>
+                      <attribute name="font-desc" value="Adelle Sans Devanagari weight=780 14"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="x">5</property>
+                    <property name="y">125</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="update_e">
+                    <property name="label" translatable="yes">Update Event</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <signal name="clicked" handler="on_update_e_clicked" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="x">125</property>
+                    <property name="y">165</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="delete_e">
+                    <property name="label" translatable="yes">D
+E
+L
+E
+T
+E
+ 
+E
+V
+E
+N
+T</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <signal name="clicked" handler="on_delete_e_clicked" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="x">340</property>
+                    <property name="y">10</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="name">page0</property>
+                <property name="title" translatable="yes">Edit</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkFixed">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <child>
+                  <object class="GtkScrolledWindow" id="sw">
+                    <property name="width-request">420</property>
+                    <property name="height-request">195</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="shadow-type">in</property>
+                    <child>
+                      <object class="GtkViewport">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <child>
+                          <object class="GtkTreeView" id="tv">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="model">ts</property>
+                            <child internal-child="selection">
+                              <object class="GtkTreeSelection" id="select">
+                                <signal name="changed" handler="on_select2_changed" swapped="no"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkTreeViewColumn" id="col1">
+                                <property name="title" translatable="yes">Guest ID</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkTreeViewColumn" id="col2">
+                                <property name="title" translatable="yes">Name</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkTreeViewColumn" id="col3">
+                                <property name="title" translatable="yes">Email</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="x">5</property>
+                    <property name="y">5</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="name">page1</property>
+                <property name="title" translatable="yes">Send RSVPs</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkFixed">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <child>
+                  <object class="GtkScrolledWindow">
+                    <property name="width-request">420</property>
+                    <property name="height-request">195</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="shadow-type">in</property>
+                    <child>
+                      <object class="GtkViewport">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <child>
+                          <object class="GtkTreeView" id="tv2">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="model">tStore</property>
+                            <child internal-child="selection">
+                              <object class="GtkTreeSelection"/>
+                            </child>
+                            <child>
+                              <object class="GtkTreeViewColumn" id="c1">
+                                <property name="title" translatable="yes">Name</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkTreeViewColumn" id="c2">
+                                <property name="title" translatable="yes">Email</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkTreeViewColumn" id="c3">
+                                <property name="title" translatable="yes">Response</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="x">5</property>
+                    <property name="y">5</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="name">page2</property>
+                <property name="title" translatable="yes">View RSVPs</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="x">5</property>
+            <property name="y">40</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkStackSwitcher" id="sw_1">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="stack">stack</property>
+          </object>
+          <packing>
+            <property name="x">5</property>
+            <property name="y">5</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

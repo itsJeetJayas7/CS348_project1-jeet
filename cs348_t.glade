@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.40.0 -->
+<interface>
+  <requires lib="gtk+" version="3.24"/>
+  <object class="GtkEntryBuffer"/>
+  <object class="GtkEntryBuffer"/>
+  <object class="GtkTreeStore" id="storeTree">
+    <columns>
+      <!-- column-name c1 -->
+      <column type="gchararray"/>
+      <!-- column-name c2 -->
+      <column type="gchararray"/>
+      <!-- column-name c3 -->
+      <column type="gchararray"/>
+      <!-- column-name c4 -->
+      <column type="gchararray"/>
+      <!-- column-name c5 -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkWindow" id="main_w">
+    <property name="can-focus">False</property>
+    <property name="halign">center</property>
+    <property name="valign">center</property>
+    <child>
+      <object class="GtkFixed">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <child>
+          <object class="GtkStack" id="g_stack">
+            <property name="width-request">500</property>
+            <property name="height-request">500</property>
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <child>
+              <object class="GtkFixed" id="p1_fix">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="label" translatable="yes">New Event</property>
+                    <attributes>
+                      <attribute name="font-desc" value="Adelle Sans Devanagari weight=810 25"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="x">180</property>
+                    <property name="y">40</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="label" translatable="yes">Event Name:</property>
+                    <attributes>
+                      <attribute name="font-desc" value="Adelle Sans Devanagari weight=810 15"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="x">50</property>
+                    <property name="y">120</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="label" translatable="yes">Date :</property>
+                    <attributes>
+                      <attribute name="font-desc" value="Adelle Sans Devanagari weight=810 15"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="x">50</property>
+                    <property name="y">180</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="label" translatable="yes">Location :</property>
+                    <attributes>
+                      <attribute name="font-desc" value="Adelle Sans Devanagari weight=810 15"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="x">50</property>
+                    <property name="y">240</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="label" translatable="yes">Description</property>
+                    <attributes>
+                      <attribute name="font-desc" value="Adelle Sans Devanagari weight=810 15"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="x">50</property>
+                    <property name="y">300</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkEntry" id="entry_name">
+                    <property name="width-request">100</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                  </object>
+                  <packing>
+                    <property name="x">250</property>
+                    <property name="y">120</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkEntry" id="entry_date">
+                    <property name="width-request">100</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="placeholder-text" translatable="yes">YYYY-MM-DD</property>
+                  </object>
+                  <packing>
+                    <property name="x">250</property>
+                    <property name="y">180</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkEntry" id="entry_loc">
+                    <property name="width-request">100</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                  </object>
+                  <packing>
+                    <property name="x">250</property>
+                    <property name="y">240</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkEntry" id="entry_disc">
+                    <property name="width-request">100</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="tooltip-text" translatable="yes">Time? What the event is about?</property>
+                  </object>
+                  <packing>
+                    <property name="x">250</property>
+                    <property name="y">300</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="submit_event">
+                    <property name="label" translatable="yes">Add Event</property>
+                    <property name="width-request">100</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <signal name="clicked" handler="on_submit_event_clicked" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="x">190</property>
+                    <property name="y">372</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="name">page0</property>
+                <property name="title" translatable="yes">Add Events</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkFixed" id="p2_fix">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                  </object>
+                  <packing>
+                    <property name="x">5</property>
+                    <property name="y">5</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkTreeView" id="tree_e">
+                    <property name="width-request">500</property>
+                    <property name="height-request">500</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="model">storeTree</property>
+                    <property name="hover-expand">True</property>
+                    <child internal-child="selection">
+                      <object class="GtkTreeSelection" id="select">
+                        <signal name="changed" handler="on_select_changed" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkTreeViewColumn" id="col1">
+                        <property name="title" translatable="yes">Id</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkTreeViewColumn" id="col2">
+                        <property name="title" translatable="yes">Event Name</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkTreeViewColumn" id="col3">
+                        <property name="title" translatable="yes">Date</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkTreeViewColumn" id="col4">
+                        <property name="title" translatable="yes">Location</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkTreeViewColumn" id="col5">
+                        <property name="title" translatable="yes">Discription</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="x">5</property>
+                    <property name="y">30</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkSwitch" id="switch">
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <signal name="state-set" handler="on_switch_state_set" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="x">440</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="label" translatable="yes">Edit Mode:</property>
+                    <attributes>
+                      <attribute name="font-desc" value="Adelle Sans Devanagari weight=780 15"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="x">360</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="name">page1</property>
+                <property name="title" translatable="yes">View Events</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="x">5</property>
+            <property name="y">50</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkStackSwitcher" id="g_switch">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="stack">g_stack</property>
+          </object>
+          <packing>
+            <property name="x">5</property>
+            <property name="y">5</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

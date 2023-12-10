@@ -58,7 +58,8 @@
             var eventLocation = document.getElementById("eventLocation").value;
             var eventDescription = document.getElementById("eventDescription").value;
 
-            fetch('http://127.0.0.1:5000/execute_python_function')
+            fetch('http://127.0.0.1:5000/execute_python_function', {
+                mode: 'no-cors'})
                 .then(response => response.text())
                 .then(data => {
                     alert(data); // Show the result from the Python function

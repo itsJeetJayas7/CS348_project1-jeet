@@ -98,7 +98,7 @@ def delete_rsvp(event_id, guest_id):
 # sample_guests = [
 #     ("Guest 1", "guest1@example.com"),
 #     ("Guest 2", "guest2@example.com"),
-#     ("Guest 3", "guest3@example.com"),
+#     ("Guest 3", "guest3@examplcleare.com"),
 #     ("Guest 4", "guest4@example.com"),
 #     ("Guest 5", "guest5@example.com")
 # ]
@@ -173,7 +173,7 @@ while True:
                 for event in guests:
                     print(event)
             elif(j==3) :
-
+                os.system('clear')
                 cursor.execute("SELECT * FROM Events")
                 events_data = cursor.fetchall()
                 for event in events_data:
