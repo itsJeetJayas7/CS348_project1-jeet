@@ -25,13 +25,14 @@ EventRSVP is a simple C application for managing and RSVPing to events. It uses 
 
 ## Installation
 
-1. Clone the repository:
+1. Run Commands:
 
    ```bash
-   git clone https://github.com/your-username/eventRSVP.git
-   cd eventRSVP
+   git clone https://github.com/itsJeetJayas7/CS348_project1-jeet.git
+   cd CS348_project1-jeet
    make
-   ./eventRSVP
+   ./event_RSVP
+
 ## Usage
 
 1. **Add Events:** Provide the title, date, location, and description to add events, guests and rsvps.
