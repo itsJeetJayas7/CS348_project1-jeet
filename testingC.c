@@ -727,9 +727,106 @@ void on_select2_changed(GtkWidget * c) {
     print_guests_for_event(event_id_t);
 }
 
+void createIndexOnDate() {
+    char *sql = "CREATE INDEX IF NOT EXISTS idx_date ON Events(date);";
+    sqlite3_exec(db, sql, 0, 0, 0);
+}
+
+void printEventDataForDateRange(const char *startDate, const char *endDate) {
+    GtkTreeStore * treeStore_mm = GTK_TREE_STORE(gtk_builder_get_object(builder, "storeTree"));
+    gtk_tree_store_clear(treeStore_mm);
+    GtkTreeIter iter;
+    const char *query = "SELECT * FROM Events WHERE date BETWEEN ? AND ?";
+    sqlite3_stmt *statement;
+
+    if (sqlite3_prepare_v2(db, query, -1, &statement, NULL) != SQLITE_OK) {
+        fprintf(stderr, "Error preparing SQL query: %s\n", sqlite3_errmsg(db));
+        return;
+    }
+
+    // Bind parameters
+    sqlite3_bind_text(statement, 1, startDate, -1, SQLITE_STATIC);
+    sqlite3_bind_text(statement, 2, endDate, -1, SQLITE_STATIC);
+
+    // Execute query
+    while (sqlite3_step(statement) == SQLITE_ROW) {
+        // Retrieve data
+        int id = sqlite3_column_int(statement, 0);
+        const char *eventName = (const char *)sqlite3_column_text(statement, 1);
+        const char *eventDate = (const char *)sqlite3_column_text(statement, 2);
+        const char *eventLoc = (const char *)sqlite3_column_text(statement, 3);
+        const char *eventDesc = (const char *)sqlite3_column_text(statement, 4);
+
+        // Print data
+        printf("ID: %d, Name: %s, Date: %s, Location: %s, Desc: %s\n", id, eventName, eventDate, eventLoc, eventDesc);
+        char id_t[10];
+        sprintf(id_t, "%d",
+            id);
+        gtk_tree_store_append(treeStore_mm, &iter, NULL);
+        gtk_tree_store_set(treeStore_mm, &iter, 0, id_t, -1);
+        gtk_tree_store_set(treeStore_mm, &iter, 1, eventName, -1);
+        gtk_tree_store_set(treeStore_mm, &iter, 2, eventDate, -1);
+        gtk_tree_store_set(treeStore_mm, &iter, 3, eventLoc, -1);
+        gtk_tree_store_set(treeStore_mm, &iter, 4, eventDesc, -1);
+    }
+
+    // Finalize the statement
+    sqlite3_finalize(statement);
+}
+
+void on_refresh_clicked() {
+    GtkWidget * switch_widget = GTK_WIDGET(gtk_builder_get_object(builder, "switch"));
+    gtk_switch_set_active(GTK_SWITCH(switch_widget), FALSE);
+    GtkTreeStore * treeStore_mm = GTK_TREE_STORE(gtk_builder_get_object(builder, "storeTree"));
+    GtkTreeView * treeView_mm = GTK_TREE_VIEW(gtk_builder_get_object(builder, "tree_e"));
+    gtk_tree_store_clear(treeStore_mm);
+    printEventsTable();
+    GtkTreeIter iter;
+
+    for (int i = 0; i < index_data; i++) {
+        
+        char id_t[10];
+        sprintf(id_t, "%d",
+            event_t[i].event_id);
+        // printf("%s %s %s %s %s\n",id_t, name_t, date_t, loc_t, disc_t);
+        
+        gtk_tree_store_append(treeStore_mm, &iter, NULL);
+	    gtk_tree_store_set(treeStore_mm, &iter, 0, id_t, -1);
+	    gtk_tree_store_set(treeStore_mm, &iter, 1, event_t[i].title, -1);
+        gtk_tree_store_set(treeStore_mm, &iter, 2, event_t[i].date, -1);
+        gtk_tree_store_set(treeStore_mm, &iter, 3, event_t[i].location, -1);
+        gtk_tree_store_set(treeStore_mm, &iter, 4, event_t[i].description, -1);
+    }
+}
+
+void on_filter_b_clicked() {
+    GtkEntry *entry1 = GTK_ENTRY(gtk_builder_get_object(builder, "date_filter"));   
+    char * date_temp = (char *) gtk_entry_get_text(entry1);
+    // g_print("%s", date_temp);
+    char * start_date, * end_date;
+    char * temp_date = strdup(date_temp);
+    char *token = strtok((char *)temp_date, ":");
+    
+    if (token != NULL) {
+        start_date = strdup(token);
+        token = strtok(NULL, ":");
+        if (token != NULL) {
+            end_date = strdup(token);
+        } else {
+            start_date = NULL; // Error: Second part is missing
+        }
+    } else {
+        start_date = NULL; // Error: First part is missing
+    }
+
+    // g_print("sd: %s nd: %s\n", start_date,end_date);
+    printEventDataForDateRange(start_date, end_date);
+}
+
 int main(int argc, char *argv[]) {
     connectDB();
     createTables();
+    createIndexOnDate();
     printEventsTable();
     char title[256], date[256], location[256], description[256];
     int ID;
@@ -741,9 +838,25 @@ int main(int argc, char *argv[]) {
 
     // Get the main window widget
     GtkWidget * window = GTK_WIDGET(gtk_builder_get_object(builder, "main_w"));
+
+    GdkScreen *screen = gdk_screen_get_default();
+    gint screen_width = gdk_screen_get_width(screen);
+    gint screen_height = gdk_screen_get_height(screen);
+
+    gint window_width, window_height;
+    gtk_window_get_size(GTK_WINDOW(window), &window_width, &window_height);
+
+    gint x = (screen_width - window_width) / 2;
+    gint y = (screen_height - window_height) / 2;
+
+    // Set the window position
+    gtk_window_move(GTK_WINDOW(window), x, y);
+
     g_signal_connect(window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
     gtk_builder_connect_signals(builder, NULL);
 
+    GtkEntry *entry1 = GTK_ENTRY(gtk_builder_get_object(builder, "date_filter"));
+    gtk_entry_set_max_length(GTK_ENTRY(entry1), 30);
     event_table_set();
 
     // Show the main window

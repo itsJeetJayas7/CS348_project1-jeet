@@ -188,8 +188,8 @@
                 </child>
                 <child>
                   <object class="GtkTreeView" id="tree_e">
-                    <property name="width-request">500</property>
-                    <property name="height-request">500</property>
+                    <property name="width-request">485</property>
+                    <property name="height-request">450</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="model">storeTree</property>
@@ -227,7 +227,7 @@
                   </object>
                   <packing>
                     <property name="x">5</property>
-                    <property name="y">30</property>
+                    <property name="y">40</property>
                   </packing>
                 </child>
                 <child>
@@ -238,6 +238,7 @@
                   </object>
                   <packing>
                     <property name="x">440</property>
+                    <property name="y">7</property>
                   </packing>
                 </child>
                 <child>
@@ -251,6 +252,47 @@
                   </object>
                   <packing>
                     <property name="x">360</property>
+                    <property name="y">5</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkEntry" id="date_filter">
+                    <property name="width-request">175</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="max-width-chars">30</property>
+                    <property name="placeholder-text" translatable="yes">YYYY-MM-DD:YYYY-MM-DD</property>
+                  </object>
+                  <packing>
+                    <property name="x">5</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="filter_b">
+                    <property name="label">gtk-find</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="use-stock">True</property>
+                    <property name="always-show-image">True</property>
+                    <signal name="clicked" handler="on_filter_b_clicked" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="x">185</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="refresh">
+                    <property name="label">gtk-refresh</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="use-stock">True</property>
+                    <property name="always-show-image">True</property>
+                    <signal name="clicked" handler="on_refresh_clicked" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="x">260</property>
                   </packing>
                 </child>
               </object>
